@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-
+#include <iostream>
 class CProduct {
 private:
     int id;
@@ -11,13 +11,11 @@ private:
 public:
     CProduct(int id, const std::string& name, double price, int quantity);
 
-    // Геттери
     int getId() const;
     std::string getName() const;
     double getPrice() const;
     int getQuantity() const;
 
-    // Сеттери
     void setPrice(double newPrice);
     void setQuantity(int newQuantity);
 

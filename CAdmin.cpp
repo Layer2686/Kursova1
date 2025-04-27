@@ -4,12 +4,14 @@
 CAdmin::CAdmin(const std::string& username, const std::string& password)
     : CUser(username, password) {}
 
-void CAdmin::showMenu() {
+void CAdmin::showMenu()
+{
     Catalog catalog;
     catalog.loadFromFile();
 
     int choice;
-    do {
+    do
+    {
         std::cout << "\n=== ADMIN MENU ==="
                   << "\n1. Add product"
                   << "\n2. Remove product"
@@ -19,7 +21,8 @@ void CAdmin::showMenu() {
                   << "\nEnter choice: ";
         std::cin >> choice;
 
-        switch (choice) {
+        switch (choice)
+        {
             case 1: addProduct(catalog); break;
             case 2: removeProduct(catalog); break;
             case 3: editProduct(catalog); break;
@@ -27,12 +30,14 @@ void CAdmin::showMenu() {
             case 0: std::cout << "Logging out...\n"; break;
             default: std::cout << "Invalid choice!\n";
         }
-    } while (choice != 0);
+    }
+    while (choice != 0);
 
     catalog.saveToFile();
 }
 
-void CAdmin::addProduct(Catalog& catalog) {
+void CAdmin::addProduct(Catalog& catalog)
+{
     int id, quantity;
     double price;
     std::string name;
@@ -50,14 +55,16 @@ void CAdmin::addProduct(Catalog& catalog) {
     catalog.addProduct(CProduct(id, name, price, quantity));
 }
 
-void CAdmin::removeProduct(Catalog& catalog) {
+void CAdmin::removeProduct(Catalog& catalog)
+{
     int productId;
     std::cout << "Enter product ID to remove: ";
     std::cin >> productId;
     catalog.removeProduct(productId);
 }
 
-void CAdmin::editProduct(Catalog& catalog) {
+void CAdmin::editProduct(Catalog& catalog)
+{
     int productId, newQuantity;
     double newPrice;
     std::cout << "Enter product ID to edit: ";
@@ -68,7 +75,8 @@ void CAdmin::editProduct(Catalog& catalog) {
     std::cin >> newQuantity;
 
     CProduct* product = catalog.findProduct(productId);
-    if (product) {
+    if (product)
+    {
         product->setPrice(newPrice);
         product->setQuantity(newQuantity);
     }

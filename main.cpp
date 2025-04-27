@@ -1,7 +1,6 @@
 #include "CUser.h"
 #include "CAdmin.h"
 #include "CBuyer.h"
-#include <iostream>
 
 int main() {
     int choice;
@@ -11,7 +10,7 @@ int main() {
         std::cout << "\n=== MAIN MENU ==="
                   << "\n1. Login"
                   << "\n2. Register"
-                  << "\n3. Exit"
+                  << "\n0. Exit"
                   << "\nEnter choice: ";
         std::cin >> choice;
         switch (choice) {
@@ -53,7 +52,7 @@ int main() {
                 break;
             }
 
-            case 3: // Вихід
+            case 0: // Вихід
                 std::cout << "Exiting program. Goodbye!\n";
             return 0;
 
@@ -64,6 +63,5 @@ int main() {
 
     }
     while (true);
-
     return 0;
 }

@@ -9,7 +9,8 @@ void CBuyer::showMenu() {
     catalog.loadFromFile();
 
     int choice;
-    do {
+    do
+    {
         std::cout << "\n=== BUYER MENU ==="
                   << "\n1. View products"
                   << "\n2. Add to cart"
@@ -19,7 +20,8 @@ void CBuyer::showMenu() {
                   << "\nEnter choice: ";
         std::cin >> choice;
 
-        switch (choice) {
+        switch (choice)
+        {
             case 1: viewProducts(catalog); break;
             case 2: addToCart(catalog); break;
             case 3: viewCart(catalog); break;
@@ -27,32 +29,41 @@ void CBuyer::showMenu() {
             case 0: std::cout << "Logging out...\n"; break;
             default: std::cout << "Invalid choice!\n";
         }
-    } while (choice != 0);
+    }
+    while (choice != 0);
 }
 
-void CBuyer::viewProducts(Catalog& catalog) {
+void CBuyer::viewProducts(Catalog& catalog)
+{
     catalog.printAllProducts();
 }
 
-void CBuyer::addToCart(Catalog& catalog) {
+void CBuyer::addToCart(Catalog& catalog)
+{
     int productId;
     std::cout << "Enter product ID to add: ";
     std::cin >> productId;
 
-    if (catalog.findProduct(productId)) {
+    if (catalog.findProduct(productId))
+    {
         cart.push_back(productId);
         std::cout << "Product added to cart!\n";
-    } else {
+    }
+    else
+    {
         std::cout << "Product not found!\n";
     }
 }
 
-void CBuyer::viewCart(Catalog& catalog) {
+void CBuyer::viewCart(Catalog& catalog)
+{
     double total = 0;
     std::cout << "\n=== YOUR CART ===\n";
-    for (int id : cart) {
+    for (int id : cart)
+    {
         CProduct* product = catalog.findProduct(id);
-        if (product) {
+        if (product)
+        {
             product->printInfoCart();
             total += product->getPrice();
         }
@@ -60,16 +71,20 @@ void CBuyer::viewCart(Catalog& catalog) {
     std::cout << "Total: " << total << " UAH\n";
 }
 
-void CBuyer::checkout(Catalog& catalog) {
+void CBuyer::checkout(Catalog& catalog)
+{
     viewCart(catalog);
     std::cout << "Confirm purchase (1 - Yes, 0 - No): ";
     int confirm;
     std::cin >> confirm;
 
-    if (confirm == 1) {
-        for (int id : cart) {
+    if (confirm == 1)
+    {
+        for (int id : cart)
+        {
             CProduct* product = catalog.findProduct(id);
-            if (product) {
+            if (product)
+            {
                 product->setQuantity(product->getQuantity() - 1);
             }
         }
