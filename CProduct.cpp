@@ -18,3 +18,8 @@ void CProduct::printInfo() const {
               << ", Price: " << price
               << ", Quantity: " << quantity << std::endl;
 }
+void CProduct::printInfoCart() const {
+    std::cout << "ID: " << id
+              << ", Name: " << name
+              << ", Price: " << price<< std::endl;
+}

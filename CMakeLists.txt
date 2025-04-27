@@ -11,4 +11,6 @@ add_executable(KursovaCPP main.cpp
         Catalog.cpp
         Catalog.h
         CAdmin.cpp
-        CAdmin.h)
+        CAdmin.h
+        CBuyer.cpp
+        CBuyer.h)

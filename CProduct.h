@@ -22,4 +22,5 @@ public:
     void setQuantity(int newQuantity);
 
     void printInfo() const; // Вивід інформації про товар
+    void printInfoCart() const;
 };

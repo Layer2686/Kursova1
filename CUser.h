@@ -3,6 +3,7 @@
 #include <sstream>
 #include <iostream>
 #include <string>
+
 class CUser {
 private:
     std::string username;
@@ -15,7 +16,11 @@ public:
     bool login(const std::string& name, const std::string& pass) const;
     std::string getUsername() const;
 
-    static bool loginFromFile(const std::string& username, const std::string& password);
-    static bool registerUser(const std::string& username, const std::string& password);
-    void switchUser();
+    static bool loginFromFile(const std::string& username,
+                            const std::string& password,
+                            std::string& outRole);
+    static bool registerUser(const std::string& username,
+                           const std::string& password,
+                           const std::string& role = "user");
+    virtual void showMenu() = 0;
 };
