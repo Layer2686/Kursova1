@@ -1,4 +1,4 @@
-#include "CUser.h"
+#include "CUser.hpp"
 
 CUser::CUser(const std::string& name, const std::string& pass)
     : username(name), password(pass) {}

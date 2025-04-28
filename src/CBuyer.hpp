@@ -1,6 +1,6 @@
 #pragma once
-#include "CUser.h"
-#include "Catalog.h"
+#include "CUser.hpp"
+#include "Catalog.hpp"
 #include <vector>
 
 class CBuyer : public CUser {

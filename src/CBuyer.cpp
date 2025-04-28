@@ -1,4 +1,4 @@
-#include "CBuyer.h"
+#include "CBuyer.hpp"
 #include <iostream>
 
 CBuyer::CBuyer(const std::string& username, const std::string& password)

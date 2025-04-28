@@ -1,6 +1,6 @@
-#include "CUser.h"
-#include "CAdmin.h"
-#include "CBuyer.h"
+#include "CUser.hpp"
+#include "CAdmin.hpp"
+#include "CBuyer.hpp"
 
 int main() {
     int choice;
@@ -14,31 +14,34 @@ int main() {
                   << "\nEnter choice: ";
         std::cin >> choice;
         switch (choice) {
-            case 1: { // Логін
+            case 1: { // Login
                 std::cout << "Username: ";
                 std::cin >> username;
                 std::cout << "Password: ";
                 std::cin >> password;
 
-                if (CUser::loginFromFile(username, password, role)) {
-                    std::cout << "Login successful! Welcome, " << username << "!\n";
-
-                    CUser* user = nullptr;
-                    if (role == "admin") {
-                        user = new CAdmin(username, password);
-                    } else {
-                        user = new CBuyer(username, password);
-                    }
-
-                    user->showMenu();
-                    delete user;
-                } else {
+                if (!CUser::loginFromFile(username, password, role)) 
+                {
                     std::cout << "Login failed! Invalid credentials.\n";
+                    continue;
                 }
+
+                std::cout << "Login successful! Welcome, " << username << "!\n";
+
+                CUser* user = nullptr;
+                if (role == "admin") {
+                    user = new CAdmin(username, password);
+                } else {
+                    user = new CBuyer(username, password);
+                }
+
+                user->showMenu();
+                delete user;
+
                 break;
             }
 
-            case 2: { // Реєстрація
+            case 2: { // Register
                 std::cout << "Username: ";
                 std::cin >> username;
                 std::cout << "Password: ";
@@ -52,7 +55,7 @@ int main() {
                 break;
             }
 
-            case 0: // Вихід
+            case 0: // Exit
                 std::cout << "Exiting program. Goodbye!\n";
             return 0;
 
