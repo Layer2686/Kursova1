@@ -1,5 +1,5 @@
 #pragma once
-#include "CProduct.h"
+#include "CProduct.hpp"
 #include <vector>
 #include <fstream>
 
