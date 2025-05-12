@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+
 class CProduct {
 private:
     int id;
@@ -17,8 +18,8 @@ public:
     int getQuantity() const;
 
     void setPrice(double newPrice);
-    void setQuantity(int newQuantity);
+    void setQuantity(int newQuantity); // Виправлено оголошення (1 параметр)
 
-    void printInfo() const; // Вивід інформації про товар
+    void printInfo() const;
     void printInfoCart() const;
 };

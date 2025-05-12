@@ -8,18 +8,25 @@ std::string CProduct::getName() const { return name; }
 double CProduct::getPrice() const { return price; }
 int CProduct::getQuantity() const { return quantity; }
 
-void CProduct::setPrice(double newPrice) { price = newPrice; }
-void CProduct::setQuantity(int newQuantity) { quantity = newQuantity; }
+void CProduct::setPrice(double newPrice) {
+    price = newPrice;
+}
 
-void CProduct::printInfo() const
-{
+// Виправлена реалізація (1 параметр)
+void CProduct::setQuantity(int newQuantity) {
+    if (newQuantity >= 0) {
+        quantity = newQuantity;
+    }
+}
+
+void CProduct::printInfo() const {
     std::cout << "ID: " << id
               << ", Name: " << name
               << ", Price: " << price
               << ", Quantity: " << quantity << std::endl;
 }
-void CProduct::printInfoCart() const
-{
+
+void CProduct::printInfoCart() const {
     std::cout << "ID: " << id
               << ", Name: " << name
               << ", Price: " << price

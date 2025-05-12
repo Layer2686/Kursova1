@@ -2,6 +2,7 @@
 #include "CUser.h"
 #include "Catalog.h"
 #include <vector>
+#include <utility> // для std::pair
 
 class CBuyer : public CUser {
 public:
@@ -9,7 +10,7 @@ public:
     void showMenu() override;
 
 private:
-    std::vector<int> cart;
+    std::vector<std::pair<int, int>> cart; // pair<productId, quantity>
     void viewProducts(Catalog& catalog);
     void addToCart(Catalog& catalog);
     void viewCart(Catalog& catalog);

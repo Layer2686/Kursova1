@@ -63,8 +63,7 @@ void CAdmin::removeProduct(Catalog& catalog)
     catalog.removeProduct(productId);
 }
 
-void CAdmin::editProduct(Catalog& catalog)
-{
+void CAdmin::editProduct(Catalog& catalog) {
     int productId, newQuantity;
     double newPrice;
     std::cout << "Enter product ID to edit: ";
@@ -75,10 +74,9 @@ void CAdmin::editProduct(Catalog& catalog)
     std::cin >> newQuantity;
 
     CProduct* product = catalog.findProduct(productId);
-    if (product)
-    {
+    if (product) {
         product->setPrice(newPrice);
-        product->setQuantity(newQuantity);
+        product->setQuantity(newQuantity); // Виправлений виклик (1 аргумент)
     }
 }
 
