@@ -12,12 +12,13 @@ void CBuyer::showMenu() {
     do
     {
         std::cout << "\n=== BUYER MENU ==="
-                  << "\n1. View products"
-                  << "\n2. Add to cart"
-                  << "\n3. View cart"
-                  << "\n4. Checkout"
-                  << "\n0. Exit"
-                  << "\nEnter choice: ";
+          << "\n1. View products"
+          << "\n2. Add to cart"
+          << "\n3. View cart"
+          << "\n4. Checkout"
+          << "\n5. Remove from cart"
+          << "\n0. Exit"
+          << "\nEnter choice: ";
         std::cin >> choice;
 
         switch (choice)
@@ -26,6 +27,7 @@ void CBuyer::showMenu() {
             case 2: addToCart(catalog); break;
             case 3: viewCart(catalog); break;
             case 4: checkout(catalog); break;
+            case 5: removeFromCart(catalog); break;
             case 0: std::cout << "Logging out...\n"; break;
             default: std::cout << "Invalid choice!\n";
         }
@@ -75,7 +77,7 @@ void CBuyer::addToCart(Catalog& catalog) {
 
     // Додавання до кошика та оновлення залишку
     cart.emplace_back(productId, quantity);
-    product->setQuantity(product->getQuantity() - quantity);
+    // product->setQuantity(product->getQuantity() - quantity);
     std::cout << "Added " << quantity << " items of product ID " << productId << " to cart.\n";
 }
 
@@ -102,7 +104,8 @@ void CBuyer::viewCart(Catalog& catalog) {
 
 void CBuyer::checkout(Catalog& catalog) {
     viewCart(catalog);
-    if (cart.empty()) {
+    if (cart.empty())
+    {
         std::cout << "Your cart is empty!\n";
         return;
     }
@@ -112,12 +115,14 @@ void CBuyer::checkout(Catalog& catalog) {
     std::cin >> confirm;
 
     if (confirm == 1) {
-        for (const auto& item : cart) {
+        for (const auto& item : cart)
+            {
             int productId = item.first;
             int quantity = item.second;
             CProduct* product = catalog.findProduct(productId);
 
-            if (product) {
+            if (product)
+            {
                 product->setQuantity(product->getQuantity() - quantity);
             }
         }
@@ -125,4 +130,49 @@ void CBuyer::checkout(Catalog& catalog) {
         catalog.saveToFile();
         std::cout << "Purchase completed! Thank you!\n";
     }
+}
+
+void CBuyer::removeFromCart(Catalog& catalog) {
+    if (cart.empty()) {
+        std::cout << "Cart is empty.\n";
+        return;
+    }
+
+    std::cout << "\n=== REMOVE FROM CART ===\n";
+    for (const auto& item : cart) {
+        const CProduct* product = catalog.findProduct(item.first);
+        if (product) {
+            std::cout << "ID: " << product->getId()
+                      << " | Name: " << product->getName()
+                      << " | Quantity in cart: " << item.second << "\n";
+        }
+    }
+
+    int id, quantity;
+    std::cout << "Enter product ID to remove: ";
+    std::cin >> id;
+
+    auto it = std::find_if(cart.begin(), cart.end(), [id](const std::pair<int, int>& item) {
+        return item.first == id;
+    });
+
+    if (it == cart.end()) {
+        std::cout << "Product not found in cart.\n";
+        return;
+    }
+
+    std::cout << "Enter quantity to remove (1 - " << it->second << "): ";
+    std::cin >> quantity;
+
+    if (quantity <= 0 || quantity > it->second) {
+        std::cout << "Invalid quantity.\n";
+        return;
+    }
+
+    it->second -= quantity;
+    if (it->second == 0) {
+        cart.erase(it);
+    }
+
+    std::cout << "Product removed from cart.\n";
 }

@@ -18,7 +18,7 @@ public:
     int getQuantity() const;
 
     void setPrice(double newPrice);
-    void setQuantity(int newQuantity); // Виправлено оголошення (1 параметр)
+    void setQuantity(int newQuantity);
 
     void printInfo() const;
     void printInfoCart() const;

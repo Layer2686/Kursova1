@@ -1,6 +1,7 @@
 #pragma once
 #include "CUser.h"
 #include "Catalog.h"
+#include <algorithm>
 #include <vector>
 #include <utility> // для std::pair
 
@@ -15,4 +16,5 @@ private:
     void addToCart(Catalog& catalog);
     void viewCart(Catalog& catalog);
     void checkout(Catalog& catalog);
+    void removeFromCart(Catalog& catalog);
 };

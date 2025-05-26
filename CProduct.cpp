@@ -8,13 +8,16 @@ std::string CProduct::getName() const { return name; }
 double CProduct::getPrice() const { return price; }
 int CProduct::getQuantity() const { return quantity; }
 
-void CProduct::setPrice(double newPrice) {
+void CProduct::setPrice(double newPrice)
+{
     price = newPrice;
 }
 
 // Виправлена реалізація (1 параметр)
-void CProduct::setQuantity(int newQuantity) {
-    if (newQuantity >= 0) {
+void CProduct::setQuantity(int newQuantity)
+{
+    if (newQuantity >= 0)
+    {
         quantity = newQuantity;
     }
 }
