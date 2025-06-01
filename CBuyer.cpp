@@ -75,9 +75,7 @@ void CBuyer::addToCart(Catalog& catalog) {
                   << product->getQuantity() << ": ";
     }
 
-    // Додавання до кошика та оновлення залишку
     cart.emplace_back(productId, quantity);
-    // product->setQuantity(product->getQuantity() - quantity);
     std::cout << "Added " << quantity << " items of product ID " << productId << " to cart.\n";
 }
 
